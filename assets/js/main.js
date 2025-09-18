@@ -212,7 +212,7 @@
 		// Thumbs.
 			$main.children('.thumb').each(function() {
 
-				var	$thiss = $(this),
+				var	$this = $(this),
 					$image = $this.find('.image'), $image_img = $image.children('img'),
 					x;
 
@@ -237,6 +237,9 @@
 			});
 
 		// Poptrox.
+			// Enhance: integrate with history so Back button closes the modal instead of leaving the site.
+			var _popStateGuard = false;
+
 			$main.poptrox({
 				baseZIndex: 20000,
 				caption: function($a) {
@@ -251,8 +254,25 @@
 
 				},
 				fadeSpeed: 300,
-				onPopupClose: function() { $body.removeClass('modal-active'); },
-				onPopupOpen: function() { $body.addClass('modal-active'); },
+				onPopupClose: function() {
+					$body.removeClass('modal-active');
+
+					// If we added a history entry for the modal, go back one step to restore the previous URL.
+					if (!_popStateGuard && window.location.hash === '#photo') {
+						_popStateGuard = true;
+						history.back();
+					} else {
+						_popStateGuard = false;
+					}
+				},
+				onPopupOpen: function() {
+					$body.addClass('modal-active');
+
+					// Push a state so that the browser Back button will close the modal.
+					try {
+						history.pushState({ modal: true }, document.title, '#photo');
+					} catch (e) { /* no-op */ }
+				},
 				overlayOpacity: 0,
 				popupCloserText: '',
 				popupHeight: 150,
@@ -267,6 +287,15 @@
 				usePopupLoader: true,
 				usePopupNav: true,
 				windowMargin: 50
+			});
+
+			// Close modal when the user presses the Back button (popstate).
+			$window.on('popstate', function() {
+				if ($body.hasClass('modal-active')) {
+					_popStateGuard = true;
+					// Close the poptrox popup programmatically.
+					if ($main[0] && $main[0]._poptrox) $main[0]._poptrox.close();
+				}
 			});
 
 			// Hack: Set margins to 0 when 'xsmall' activates.

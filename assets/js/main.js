@@ -210,10 +210,10 @@
 		var $main = $('#main');
 
 		// Thumbs.
-			$main.children('.thumb').each(function() {
+			$main.children('.thmb').each(function() {
 
 				var	$this = $(this),
-					$imge = $this.find('.image'), $image_img = $image.children('img'),
+					$img = $this.find('.image'), $image_img = $image.children('img'),
 					x;
 
 				// No image? Bail.

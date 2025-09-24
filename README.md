@@ -1,7 +1,5 @@
-# html5up-multiverse
+# cat-multiverse-bugged
 
-This is a template website in the style of a photo showcase.
+This is a template website in the style of a photo showcase but with a display bug.
 
-Upload photos to the repo or provide URLs for hosted photos.
-
-Use the preview icon on the side bar for easy deployment. For a custom URL, change the Deployment Settings under this Project's settings.
+If you click on an image, it just opens the image instead of having a nice preview box. Try describing this bug to our AI (or just tell it to `fix the bug` 😊)

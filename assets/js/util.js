@@ -43,7 +43,7 @@
 
 		// No elements?
 			if (this.length == 0)
-				return $this;
+				return this;
 
 		// Multiple elements?
 			if (this.length > 1) {
@@ -51,7 +51,7 @@
 				for (var i=0; i < this.length; i++)
 					$(this[i]).panel(userConfig);
 
-				return $this;
+				return this;
 
 			}
 
@@ -308,7 +308,7 @@
 
 		// No elements?
 			if (this.length == 0)
-				return $this;
+				return this;
 
 		// Multiple elements?
 			if (this.length > 1) {
@@ -316,7 +316,7 @@
 				for (var i=0; i < this.length; i++)
 					$(this[i]).placeholder();
 
-				return $this;
+				return this;
 
 			}
 
@@ -375,7 +375,7 @@
 									.html()
 									.replace(/type="password"/i, 'type="text"')
 									.replace(/type=password/i, 'type=text')
-					);
+						);
 
 					if (i.attr('id') != '')
 						x.attr('id', i.attr('id') + '-polyfill-field');
@@ -510,6 +510,7 @@
 									break;
 
 							}
+
 						});
 
 				});

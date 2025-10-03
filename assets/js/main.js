@@ -212,7 +212,7 @@
 		// Thumbs.
 			$main.children('.thumb').each(function() {
 
-				var	$thiss = $(this),
+				var	$this = $(this),
 					$image = $this.find('.image'), $image_img = $image.children('img'),
 					x;
 
